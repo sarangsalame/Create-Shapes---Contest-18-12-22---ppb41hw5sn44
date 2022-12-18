@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useState} from 'react'
 import '../styles/App.css';
 const App = () => {
-  let [data, SetData]=UseState("Square")
-  let [net, SetNet] = UseState(true)
+  let [data, SetData]=useState("Square")
+  let [net, SetNet] = useState(true)
 const createShapeopt=(e)=>{
   SetData(e.target.value)
 }

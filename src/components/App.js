@@ -1,32 +1,30 @@
-import React,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/App.css';
 const App = () => {
-  let [data, SetData]=useState("Square")
-  let [net, SetNet] = useState(true)
-const createShapeopt=(e)=>{
-  SetData(e.target.value)
-}
-
-const create=()=>{
-  if(data==="Circle"){
-  return SetNet(false)
+  const [value, setValue] = useState('square')
+  const [shapeList, setShapeList] = useState([])
+  function handleChange() {
+    setShapeList([...shapeList, value])
   }
-  else{
-  return SetNet(true)
-}}
+
   return (
     <div id="main">
+
       <div id="shape-creator">
-        <select onChange={createShapeopt} value={data}>
-          <option  value="Square">Square</option>
-          <option  value="Circle">Circle</option>
+        
+        <select onChange={(e) => { setValue(e.target.value) }}>
+          <option value="square">Square</option>
+          <option value="circle">Circle</option>
         </select>
-    <button onCick={create}>Add shape</button>
+
+        <button onClick={handleChange}>Add shape</button>
 
       </div>
-      <div id="shapes-holder">
-        <div className={net ? "square" : "circle" }
+
+      <div id="shapes-holder" >
+        {shapeList.map((ele, idx) => ele === 'square' ? <div className='square'>{idx}</div> : <div className='circle'>{idx}</div>)}
       </div>
+
     </div>
   )
 }
